@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnswerClickAction : MonoBehaviour
 {
-    public GameObject linePrefab;
+    public GameObject circlePrefab;
     private Vector2 startPos;
     private float lineLength = 0.2f;
     private float lineWidth = 5.0f;
@@ -14,6 +14,8 @@ public class AnswerClickAction : MonoBehaviour
     public bool circleEntryFlag;
     // 円予測表示のトランスフォーム.
     private Transform CirclePrediction = null;
+    //  時間切れ表示
+    private GameObject turnEnd;
     //決定ボタン
     private GameObject decisionButton;
     //キャンセルボタン
@@ -28,13 +30,17 @@ public class AnswerClickAction : MonoBehaviour
         cancelButton = GameObject.Find("CancelButton");
         // 円予測のトランスフォームを取得
         CirclePrediction = transform.Find("CirclePrediction");
+        // 時間切れ表示オブジェクトの情報を取得
+        turnEnd = GameObject.Find("TurnEnd");
 
         // 円予測表示の非表示
         CirclePrediction.gameObject.SetActive( false );
         // 決定ボタンとキャンセルボタンの非表示
         decisionButton.gameObject.SetActive( false );
         cancelButton.gameObject.SetActive( false );
-        //サークル記入フラグをオフにする
+        // 時間切れ表示オブジェクトの非表示
+        turnEnd.gameObject.SetActive( false );
+        // サークル記入フラグをオフにする
         circleEntryFlag = false;
         
     }
@@ -42,6 +48,7 @@ public class AnswerClickAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //サークル記入フラグがfalseの場合のみ、記入が可能
         if (circleEntryFlag == false)
         {
             //マウスが押下された時
@@ -77,7 +84,7 @@ public class AnswerClickAction : MonoBehaviour
                 if ((endPos - startPos).magnitude > lineLength)
                 {
                     //startPosの位置を中心に円を配置する。
-                    choiceCircle = Instantiate(linePrefab, startPos, Quaternion.identity);
+                    choiceCircle = Instantiate(circlePrefab, startPos, Quaternion.identity);
                     choiceCircle.transform.localScale = new Vector2 ((endPos - startPos).magnitude ,(endPos - startPos).magnitude);
 
                     //startPosの位置をendPosに設定する
@@ -86,6 +93,9 @@ public class AnswerClickAction : MonoBehaviour
                     // 決定ボタンとキャンセルボタンを表示
                     decisionButton.gameObject.SetActive( true );
                     cancelButton.gameObject.SetActive( true );
+
+                    // 円予測表示の非表示
+                    CirclePrediction.gameObject.SetActive( false );
 
                     //サークル記入フラグを有効にする
                     circleEntryFlag = true;
