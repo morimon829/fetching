@@ -53,7 +53,7 @@ public class TurnEndScript : MonoBehaviour
     //     // SceneManager.LoadScene("GameScene");
     }
 
-
+    //移行先のシーンを先に作成する
     // private void GameSceneLoaded(Scene next, LoadSceneMode mode)
     // {
     //     // // シーン切り替え後のスクリプトを取得
