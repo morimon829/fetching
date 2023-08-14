@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class TurnEndScript : MonoBehaviour
+public class ChildTurnEndScript : MonoBehaviour
 {
     //  時間切れ表示
     private GameObject turnEndObject;

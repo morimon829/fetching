@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerClickAction : MonoBehaviour
+public class ChildAnswerClickAction : MonoBehaviour
 {
     public GameObject circlePrefab;
     public Vector2 startPos;
@@ -21,10 +21,15 @@ public class AnswerClickAction : MonoBehaviour
     private GameObject decisionButton;
     //キャンセルボタン
     private GameObject cancelButton;
+    //ChildAnswer準備クラス
+    private ChildAnswerPrepare childAnswerPrepare; 
 
     // Start is called before the first frame update
     void Start()
     {
+        // 前のシーンから受け渡された情報を取得
+        childAnswerPrepare = GameObject.Find("ChildAnswerPrepare").GetComponent<ChildAnswerPrepare>();
+
         // 決定ボタンのオブジェクトを取得
         decisionButton = GameObject.Find("DecisionButton");
         // キャンセルボタンのオブジェクトを取得
@@ -46,7 +51,6 @@ public class AnswerClickAction : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         //サークル記入フラグがfalseの場合のみ、記入が可能
@@ -64,22 +68,22 @@ public class AnswerClickAction : MonoBehaviour
             //マウスが押下し続けられている間
             if (Input.GetMouseButton(0))
             {
-                Vector2 pushendPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 //マウスのドラック量が0.2を超えた場合
-                if ((pushendPos - startPos).magnitude > lineLength)
+                if ((endPos - startPos).magnitude > lineLength)
                 {
                     //円予測表示の表示位置を設定
                     CirclePrediction.position = startPos;
                     //円予測表示のサイズを設定
-                    CirclePrediction.localScale = new Vector2 ((pushendPos - startPos).magnitude ,(pushendPos - startPos).magnitude);
+                    CirclePrediction.localScale = new Vector2 ((endPos - startPos).magnitude ,(endPos - startPos).magnitude);
                 }
             }
 
             //マウスの押下が終了した時
             if (Input.GetMouseButtonUp(0))
             {
-                endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 //マウスのドラック量が0.2を超えた場合
                 if ((endPos - startPos).magnitude > lineLength)
@@ -102,7 +106,6 @@ public class AnswerClickAction : MonoBehaviour
                     circleEntryFlag = true;
                     
                 }
-                
             }
         }
     }
