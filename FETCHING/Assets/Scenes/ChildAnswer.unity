@@ -389,11 +389,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 144743038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57bd9d8afe89d045a82ce2fe20f0f25, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a1879cd3c8033d44811c9cb6b41716c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeText: {fileID: 144743040}
+  _turnEndScript: {fileID: 148045849}
   countdownSeconds: 60
-  countDownEndflg: 0
 --- !u!1 &148045844
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +480,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 148045849}
-        m_TargetAssemblyTypeName: ChildTurnEndScript, Assembly-CSharp
-        m_MethodName: oNDecisionButton
+        m_TargetAssemblyTypeName: TurnEndScript, Assembly-CSharp
+        m_MethodName: OnDecisionButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -537,9 +538,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 148045844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7eb2889d59f4c4596f48f407d95c7e, type: 3}
+  m_Script: {fileID: 11500000, guid: e6bbdc9b88b32ca409244842ff9f3418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turnEndObject: {fileID: 971769135}
+  _decisionButton: {fileID: 148045844}
+  _cancelButtonObject: {fileID: 1575874196}
+  _answerClickAction: {fileID: 1853884022}
+  _timeCounterscript: {fileID: 144743042}
+  _nextScene: ChildAnswer
 --- !u!1 &220115778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,6 +1474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76630a8a579137144a8b998e96caccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _decisionButtonObject: {fileID: 0}
+  _cancelButtonObject: {fileID: 0}
+  _circlePredictionObject: {fileID: 0}
+  _answerClickAction: {fileID: 0}
 --- !u!1 &855572975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2278,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1575874201}
         m_TargetAssemblyTypeName: CancelButtonScript, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -2326,9 +2337,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1575874196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0efb6ff9e8bf494409424eb88c34f672, type: 3}
+  m_Script: {fileID: 11500000, guid: 76630a8a579137144a8b998e96caccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _decisionButtonObject: {fileID: 148045844}
+  _cancelButtonObject: {fileID: 1575874196}
+  _circlePredictionObject: {fileID: 1412508858}
+  _answerClickAction: {fileID: 1853884022}
 --- !u!1 &1634211410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,14 +3142,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1853884017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c524e87d1327d384e998e2b1c53baaf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 226fc321e5a2fa94c8e250668538e19b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circlePrefab: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
-  startPos: {x: 0, y: 0}
-  endPos: {x: 0, y: 0}
-  choiceCircle: {fileID: 0}
-  circleEntryFlag: 0
+  _turnEndObject: {fileID: 971769135}
+  _decisionButtonObject: {fileID: 148045844}
+  _cancelButtonObject: {fileID: 1575874196}
+  circlePrefabObject: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
+  _circlePrediction: {fileID: 1412508859}
+  _AnswerPrepare: {fileID: 220115780}
 --- !u!1 &2045887148
 GameObject:
   m_ObjectHideFlags: 0
