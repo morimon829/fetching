@@ -546,7 +546,7 @@ MonoBehaviour:
   _cancelButtonObject: {fileID: 1575874196}
   _answerClickAction: {fileID: 1853884022}
   _timeCounterscript: {fileID: 144743042}
-  _nextScene: ChildAnswer
+  _processedSCENE: ChildAnswer
 --- !u!1 &220115778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 712946472}
-  - component: {fileID: 712946473}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -1462,22 +1461,6 @@ RectTransform:
   m_AnchoredPosition: {x: 800, y: -500}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &712946473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712946471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76630a8a579137144a8b998e96caccce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _decisionButtonObject: {fileID: 0}
-  _cancelButtonObject: {fileID: 0}
-  _circlePredictionObject: {fileID: 0}
-  _answerClickAction: {fileID: 0}
 --- !u!1 &855572975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,7 +3133,8 @@ MonoBehaviour:
   _cancelButtonObject: {fileID: 1575874196}
   circlePrefabObject: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
   _circlePrediction: {fileID: 1412508859}
-  _AnswerPrepare: {fileID: 220115780}
+  _processedSCENE: ChildAnswer
+  _answerPrepare: {fileID: 220115780}
 --- !u!1 &2045887148
 GameObject:
   m_ObjectHideFlags: 0

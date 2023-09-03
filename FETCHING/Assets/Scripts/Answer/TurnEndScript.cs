@@ -21,12 +21,9 @@ public class TurnEndScript : MonoBehaviour
     // timeCounterscriptの情報
     [SerializeField]
     private TimeCounter _timeCounterscript;
-    // 次に呼ばれるシーン名
+    //親と子の処理判定
     [SerializeField]
-    private string _nextScene;
-
-
-
+    private string _processedSCENE;
 
     public void OnDecisionButton()
     {
@@ -45,23 +42,46 @@ public class TurnEndScript : MonoBehaviour
         _turnEndObject.gameObject.SetActive(true);
         // サークル記入フラグをオンにする
         _answerClickAction.circleEntryFlag = true;
-        // イベントに登録
-        SceneManager.sceneLoaded += GameSceneLoaded;
-        // シーン切り替え
-        SceneManager.LoadScene(_nextScene);
+        //稼働しているシーンで分岐
+        if (_processedSCENE == "DealerAnswer")
+        {
+            // イベントに登録
+            SceneManager.sceneLoaded += ChildAnswerGameSceneLoaded;
+            // シーン切り替え
+            SceneManager.LoadScene("ChildAnswer");
+        }
+        else if (_processedSCENE == "ChildAnswer")
+        {
+            // イベントに登録
+            SceneManager.sceneLoaded += GameResultGameSceneLoaded;
+            // シーン切り替え
+            SceneManager.LoadScene("GameResult");
+        }
     }
 
-    private void GameSceneLoaded(Scene next, LoadSceneMode mode)
+    private void ChildAnswerGameSceneLoaded(Scene next, LoadSceneMode mode)
     {
         // シーン切り替え後のスクリプトを取得
         AnswerPrepare answerPrepare = GameObject.FindWithTag("GameManager").GetComponent<AnswerPrepare>();
 
-        Debug.Log(_answerClickAction.startPos);
         // データを渡す処理
         answerPrepare.startPos = _answerClickAction.startPos;
         answerPrepare.endPos = _answerClickAction.endPos;
 
         // イベントから削除
-        SceneManager.sceneLoaded -= GameSceneLoaded;
+        SceneManager.sceneLoaded -= ChildAnswerGameSceneLoaded;
+    }
+
+    private void GameResultGameSceneLoaded(Scene next, LoadSceneMode mode)
+    {
+        // シーン切り替え後のスクリプトを取得
+        GameResultPrepare gameResultPrepare = GameObject.FindWithTag("GameManager").GetComponent<GameResultPrepare>();
+
+        // データを渡す処理
+        gameResultPrepare.startPos = _answerClickAction.startPos;
+        gameResultPrepare.endPos = _answerClickAction.endPos;
+
+        // イベントから削除
+        SceneManager.sceneLoaded -= GameResultGameSceneLoaded;
     }
 }
