@@ -6,4 +6,5 @@ public class ChildAnswerPrepare : MonoBehaviour
 {
     public Vector2 startPos;
     public Vector2 endPos;
+    public Vector2 pushendPos;
 }

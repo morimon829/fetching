@@ -70,6 +70,7 @@ public class TurnEndScript : MonoBehaviour
         // データを渡す処理
         childAnswerPrepare.startPos = _answerClickAction.startPos;
         childAnswerPrepare.endPos = _answerClickAction.endPos;
+        childAnswerPrepare.pushendPos = _answerClickAction.pushendPos;
 
         // イベントから削除
         SceneManager.sceneLoaded -= ChildAnswerGameSceneLoaded;
@@ -83,8 +84,10 @@ public class TurnEndScript : MonoBehaviour
         // データを渡す処理
         gameResultPrepare.DealerStartPos = _childAnswerPrepare.startPos;
         gameResultPrepare.DealerEndPos = _childAnswerPrepare.endPos;
+        gameResultPrepare.DealerPushendPos = _childAnswerPrepare.pushendPos;
         gameResultPrepare.ChildStartPos = _answerClickAction.startPos;
         gameResultPrepare.ChildEndPos = _answerClickAction.endPos;
+        gameResultPrepare.ChildPushendPos = _answerClickAction.pushendPos;
 
         // イベントから削除
         SceneManager.sceneLoaded -= GameResultGameSceneLoaded;

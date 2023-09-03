@@ -547,6 +547,7 @@ MonoBehaviour:
   _answerClickAction: {fileID: 1853884022}
   _timeCounterscript: {fileID: 144743042}
   _processedSCENE: DealerAnswer
+  _childAnswerPrepare: {fileID: 0}
 --- !u!1 &323999930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,7 +1968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchoredPosition: {x: 1500, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1412508860
@@ -1990,7 +1991,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25ce2799e3435be459710468be99dca4, type: 2}
+  - {fileID: 2100000, guid: ce4fdb1ef52382e4bb3d75095886e85c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3149,7 +3150,7 @@ MonoBehaviour:
   circlePrefabObject: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
   _circlePrediction: {fileID: 1412508859}
   _processedSCENE: DealerAnswer
-  _answerPrepare: {fileID: 0}
+  _childAnswerPrepare: {fileID: 0}
 --- !u!1 &2045887148
 GameObject:
   m_ObjectHideFlags: 0

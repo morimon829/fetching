@@ -52,7 +52,8 @@ public class AnswerClickAction : MonoBehaviour
     //親シーンの円終了位置
     private Vector2 dealerEndPos;
     //マウス押下ポジション
-    private Vector2 pushendPos;
+    [System.NonSerialized]
+    public Vector2 pushendPos;
 
     void Awake()
     {
@@ -189,7 +190,7 @@ public class AnswerClickAction : MonoBehaviour
             // マウスのドラック量が設定値を超えた場合
             if ((endPos - startPos).magnitude > _lineLength)
             {
-                // startPosの位置を中心に円を配置する。
+                // pushendPosの位置を中心に円を配置する。
                 choiceCircleObject = Instantiate(circlePrefabObject, pushendPos, Quaternion.identity);
                 choiceCircleObject.transform.localScale = new Vector2(
                     (dealerEndPos - dealerStartPos).magnitude,
