@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DealerAnswerPrepare : MonoBehaviour
+public class ImageLoadPrepare : MonoBehaviour
 {
-    [System.NonSerialized]
-    public Sprite CreatedSprite;
-
     [System.NonSerialized]
     public int Player1Score;
 
