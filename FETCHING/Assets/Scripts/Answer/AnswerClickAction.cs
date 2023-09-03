@@ -46,7 +46,7 @@ public class AnswerClickAction : MonoBehaviour
     private string _processedSCENE;
     //Answer処理準備オブジェクト
     [SerializeField]
-    private AnswerPrepare _answerPrepare;
+    private ChildAnswerPrepare _childAnswerPrepare;
     //親シーンの円開始位置
     private Vector2 dealerStartPos;
     //親シーンの円終了位置
@@ -72,8 +72,8 @@ public class AnswerClickAction : MonoBehaviour
         if (_processedSCENE == "ChildAnswer")
         {
             //引継ぎ情報を取得
-            dealerStartPos = _answerPrepare.startPos;
-            dealerEndPos = _answerPrepare.endPos;
+            dealerStartPos = _childAnswerPrepare.startPos;
+            dealerEndPos = _childAnswerPrepare.endPos;
         }
     }
 

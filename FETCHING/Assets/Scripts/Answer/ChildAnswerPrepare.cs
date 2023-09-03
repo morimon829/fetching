@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerPrepare : MonoBehaviour
+public class ChildAnswerPrepare : MonoBehaviour
 {
     public Vector2 startPos;
     public Vector2 endPos;

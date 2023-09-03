@@ -547,6 +547,7 @@ MonoBehaviour:
   _answerClickAction: {fileID: 1853884022}
   _timeCounterscript: {fileID: 144743042}
   _processedSCENE: ChildAnswer
+  _childAnswerPrepare: {fileID: 220115780}
 --- !u!1 &220115778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,7 +3135,7 @@ MonoBehaviour:
   circlePrefabObject: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
   _circlePrediction: {fileID: 1412508859}
   _processedSCENE: ChildAnswer
-  _answerPrepare: {fileID: 220115780}
+  _childAnswerPrepare: {fileID: 220115780}
 --- !u!1 &2045887148
 GameObject:
   m_ObjectHideFlags: 0

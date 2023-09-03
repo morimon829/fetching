@@ -1845,11 +1845,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1315988133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6ee56cd0bf49b4da5d719209508d55, type: 3}
+  m_Script: {fileID: 11500000, guid: ce492df2b246ba543b66815329a6775d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0}
-  endPos: {x: 0, y: 0}
 --- !u!1 &1323551865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,7 +3149,7 @@ MonoBehaviour:
   circlePrefabObject: {fileID: 7834002811203632733, guid: c8bdd11a2fec52b499883fb732809475, type: 3}
   _circlePrediction: {fileID: 1412508859}
   _processedSCENE: DealerAnswer
-  _answerPrepare: {fileID: 1315988136}
+  _answerPrepare: {fileID: 0}
 --- !u!1 &2045887148
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,9 @@ public class TurnEndScript : MonoBehaviour
     //親と子の処理判定
     [SerializeField]
     private string _processedSCENE;
+    //Answer処理準備オブジェクト
+    [SerializeField]
+    private ChildAnswerPrepare _childAnswerPrepare;
 
     public void OnDecisionButton()
     {
@@ -62,11 +65,11 @@ public class TurnEndScript : MonoBehaviour
     private void ChildAnswerGameSceneLoaded(Scene next, LoadSceneMode mode)
     {
         // シーン切り替え後のスクリプトを取得
-        AnswerPrepare answerPrepare = GameObject.FindWithTag("GameManager").GetComponent<AnswerPrepare>();
+        ChildAnswerPrepare childAnswerPrepare = GameObject.FindWithTag("GameManager").GetComponent<ChildAnswerPrepare>();
 
         // データを渡す処理
-        answerPrepare.startPos = _answerClickAction.startPos;
-        answerPrepare.endPos = _answerClickAction.endPos;
+        childAnswerPrepare.startPos = _answerClickAction.startPos;
+        childAnswerPrepare.endPos = _answerClickAction.endPos;
 
         // イベントから削除
         SceneManager.sceneLoaded -= ChildAnswerGameSceneLoaded;
@@ -78,8 +81,10 @@ public class TurnEndScript : MonoBehaviour
         GameResultPrepare gameResultPrepare = GameObject.FindWithTag("GameManager").GetComponent<GameResultPrepare>();
 
         // データを渡す処理
-        gameResultPrepare.startPos = _answerClickAction.startPos;
-        gameResultPrepare.endPos = _answerClickAction.endPos;
+        gameResultPrepare.DealerStartPos = _childAnswerPrepare.startPos;
+        gameResultPrepare.DealerEndPos = _childAnswerPrepare.endPos;
+        gameResultPrepare.ChildStartPos = _answerClickAction.startPos;
+        gameResultPrepare.ChildEndPos = _answerClickAction.endPos;
 
         // イベントから削除
         SceneManager.sceneLoaded -= GameResultGameSceneLoaded;

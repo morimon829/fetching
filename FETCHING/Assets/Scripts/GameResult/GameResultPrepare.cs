@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class GameResultPrepare : MonoBehaviour
 {
-    public Vector2 startPos;
-    public Vector2 endPos;
+    //親のサークル情報
+    [System.NonSerialized]
+    public Vector2 DealerStartPos;
+    [System.NonSerialized]
+    public Vector2 DealerEndPos;
+
+    //子のサークル情報
+    [System.NonSerialized]
+    public Vector2 ChildStartPos;
+    [System.NonSerialized]
+    public Vector2 ChildEndPos;
 }
