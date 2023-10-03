@@ -20,13 +20,7 @@ public class GameResultPrepare : MonoBehaviour
     [System.NonSerialized]
     public Vector2 ChildPushendPos;
 
-    void Start()
-    {
-        // Debug.Log(DealerStartPos);
-        // Debug.Log(DealerEndPos);
-        // Debug.Log(DealerPushendPos);
-        // Debug.Log(ChildStartPos);
-        // Debug.Log(ChildEndPos);
-        // Debug.Log(ChildPushendPos);
-    }
+    //スコアリスト
+
+
 }
