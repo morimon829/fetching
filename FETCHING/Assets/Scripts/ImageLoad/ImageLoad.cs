@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using SFB;
 
-public class ImageLoadScript : MonoBehaviour
+public class ImageLoad : MonoBehaviour
 {
     // 読込画像用のオブジェクト
     [SerializeField]
@@ -15,6 +15,8 @@ public class ImageLoadScript : MonoBehaviour
     private static readonly string NextScene = "DealerAnswer";
     // シーン間引継ぎ情報
     private ImageLoadPrepare _imageLoadPrepare;
+
+    private Sprite _sprite;
 
     public void OnImageLoadButtonClicked()
     {
@@ -42,7 +44,6 @@ public class ImageLoadScript : MonoBehaviour
     public void OnOkButtonClicked()
     {
         _imageLoadPrepare = GameObject.FindWithTag("GameManager").GetComponent<ImageLoadPrepare>();
-
         SceneManager.sceneLoaded += GameSceneLoaded;
 
         SceneManager.LoadScene(NextScene);
@@ -52,7 +53,7 @@ public class ImageLoadScript : MonoBehaviour
     {
         DealerAnswerPrepare dealerAnswerPrepare = GameObject.FindWithTag("GameManager").GetComponent<DealerAnswerPrepare>();
 
-        dealerAnswerPrepare.CreatedSprite = _image.sprite;
+        dealerAnswerPrepare.CreatedSprite = _sprite;
         dealerAnswerPrepare.Player1Score = _imageLoadPrepare.Player1Score;
         dealerAnswerPrepare.Player2Score = _imageLoadPrepare.Player2Score;
         dealerAnswerPrepare.Player1Name = _imageLoadPrepare.Player1Name;
@@ -74,9 +75,10 @@ public class ImageLoadScript : MonoBehaviour
         {
             Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             // 取得した画像のテクスチャをスプライトに変換
-            Sprite createdSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            _image.sprite = _sprite;
             _image.color = new Color(1, 1, 1, 1);
-            _image.sprite = createdSprite;
+            _image.preserveAspect = true;
         }
     }
 }
