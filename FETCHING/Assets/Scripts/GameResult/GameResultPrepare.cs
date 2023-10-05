@@ -19,8 +19,8 @@ public class GameResultPrepare : MonoBehaviour
     public Vector2 ChildEndPos;
     [System.NonSerialized]
     public Vector2 ChildPushendPos;
-
     //スコアリスト
+    public int[] ScoreList;
 
 
 }

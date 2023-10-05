@@ -58,9 +58,17 @@ public class AnnouncementOfResults : MonoBehaviour
     [SerializeField]
     private GameObject _scoreData;
 
-    //スコアデータ
+    //スコアリスト設定処理
     [SerializeField]
-    private List<GameObject> _scoreDataList;
+    private SetScoreList _setScoreList;
+
+    //画面表示スコアデータ(左下)
+    [SerializeField]
+    private GameObject _displayScoreList;
+
+    //受け渡し用スコアリスト
+    [System.NonSerialized]
+    public int[] passingScoreList;
 
 
     void Start()
@@ -75,18 +83,21 @@ public class AnnouncementOfResults : MonoBehaviour
         player3CircleObject = ChildCircleDraw(new Vector2(956, 400), _player3Caler);
         player4CircleObject = ChildCircleDraw(new Vector2(656, 500), _player4Caler);
 
-        //スコアリストを作成する。
-        List<int> scorelist = new List<int>();
-        scorelist.Add(000);
+        //現在のスコアをスコアリストに描画
+        passingScoreList = _setScoreList.SettingScoreList(_displayScoreList, _gameResultPrepare.ScoreList);
+
+        //ポイントリストを作成する。
+        int[] pointlist = new int[4];
+        pointlist[0] = 0;
         //プレイヤー2
         //点数算出処理
-        scorelist.Add(PointCalculation(player1CircleObject, player2CircleObject));
+        pointlist[1] = PointCalculation(player1CircleObject, player2CircleObject);
 
         //プレイヤー3
-        scorelist.Add(PointCalculation(player1CircleObject, player3CircleObject));
+        pointlist[2] = PointCalculation(player1CircleObject, player3CircleObject);
 
         //プレイヤー4
-        scorelist.Add(PointCalculation(player1CircleObject, player4CircleObject));
+        pointlist[3] = PointCalculation(player1CircleObject, player4CircleObject);
 
         //リザルトボードを表示
         _resultBord.SetActive(true);
@@ -97,7 +108,9 @@ public class AnnouncementOfResults : MonoBehaviour
         {
             if (scoreDatas.name == "Score")
             {
-                scoreDatas.text = scorelist[count].ToString();
+                int nowscore = passingScoreList[count] + pointlist[count];
+                scoreDatas.text = nowscore.ToString();
+                passingScoreList[count] = nowscore;
                 count++;
             }
         }

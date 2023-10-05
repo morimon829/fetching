@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class NextRound : MonoBehaviour
 {
+    [SerializeField]
+    private AnnouncementOfResults _announcementOfResults;
     public void OnBottan()
     {
         // イベントに登録
@@ -16,13 +18,11 @@ public class NextRound : MonoBehaviour
 
     private void ImageLoadGameSceneLoaded(Scene next, LoadSceneMode mode)
     {
-        // // シーン切り替え後のスクリプトを取得
-        // ChildAnswerPrepare childAnswerPrepare = GameObject.FindWithTag("GameManager").GetComponent<ChildAnswerPrepare>();
+        // シーン切り替え後のスクリプトを取得
+        ImageLoadPrepare imageLoadPrepare = GameObject.FindWithTag("GameManager").GetComponent<ImageLoadPrepare>();
 
         // // データを渡す処理
-        // childAnswerPrepare.startPos = _answerClickAction.startPos;
-        // childAnswerPrepare.endPos = _answerClickAction.endPos;
-        // childAnswerPrepare.pushendPos = _answerClickAction.pushendPos;
+        imageLoadPrepare.ScoreList = _announcementOfResults.passingScoreList;
 
         // イベントから削除
         SceneManager.sceneLoaded -= ImageLoadGameSceneLoaded;

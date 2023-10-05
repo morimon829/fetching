@@ -21,7 +21,7 @@ public class ImageLoad : MonoBehaviour
     public void OnImageLoadButtonClicked()
     {
         // ファイル形式の指定
-        var extensions = new[] 
+        var extensions = new[]
         {
             new ExtensionFilter("Image Files", "png", "jpg", "jpeg"),
         };
@@ -29,7 +29,8 @@ public class ImageLoad : MonoBehaviour
         // 画像ファイルのパスを取得
         var paths = StandaloneFileBrowser.OpenFilePanel("画像ファイルを選択してください", "", extensions, false);
 
-        if (paths.Length > 0) {
+        if (paths.Length > 0)
+        {
             StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
         }
     }
@@ -54,8 +55,7 @@ public class ImageLoad : MonoBehaviour
         DealerAnswerPrepare dealerAnswerPrepare = GameObject.FindWithTag("GameManager").GetComponent<DealerAnswerPrepare>();
 
         dealerAnswerPrepare.CreatedSprite = _sprite;
-        dealerAnswerPrepare.Player1Score = _imageLoadPrepare.Player1Score;
-        dealerAnswerPrepare.Player2Score = _imageLoadPrepare.Player2Score;
+        dealerAnswerPrepare.ScoreList = _imageLoadPrepare.ScoreList;
         dealerAnswerPrepare.Player1Name = _imageLoadPrepare.Player1Name;
         dealerAnswerPrepare.Player2Name = _imageLoadPrepare.Player2Name;
 

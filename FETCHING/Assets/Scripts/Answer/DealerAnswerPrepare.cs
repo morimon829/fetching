@@ -18,4 +18,8 @@ public class DealerAnswerPrepare : MonoBehaviour
 
     [System.NonSerialized]
     public string Player2Name;
+
+    //スコアリスト
+    [System.NonSerialized]
+    public int[] ScoreList;
 }

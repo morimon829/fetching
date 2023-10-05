@@ -54,6 +54,9 @@ public class AnswerClickAction : MonoBehaviour
     //マウス押下ポジション
     [System.NonSerialized]
     public Vector2 pushendPos;
+    //プレイヤーの色
+    [SerializeField]
+    private Material _playerCaler;
 
     void Awake()
     {
@@ -196,6 +199,7 @@ public class AnswerClickAction : MonoBehaviour
                     (dealerEndPos - dealerStartPos).magnitude,
                     (dealerEndPos - dealerStartPos).magnitude
                 );
+                choiceCircleObject.GetComponent<Renderer>().material = _playerCaler;
 
                 // startPosの位置をendPosに設定する
                 // startPos = endPos;
