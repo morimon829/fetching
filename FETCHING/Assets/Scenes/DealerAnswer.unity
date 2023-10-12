@@ -461,6 +461,7 @@ MonoBehaviour:
   _answerClickAction: {fileID: 1853884022}
   _timeCounterscript: {fileID: 144743042}
   _processedSCENE: DealerAnswer
+  _dealerAnswerPrepare: {fileID: 1315988136}
   _childAnswerPrepare: {fileID: 0}
   _dealerScorelistStartProcessing: {fileID: 802447704}
   _childScorelistStartProcessing: {fileID: 0}

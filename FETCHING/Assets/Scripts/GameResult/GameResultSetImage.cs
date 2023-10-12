@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class DealerAnswerSettingImage : MonoBehaviour
+public class GameResultSetImage : MonoBehaviour
 {
     [SerializeField]
     private Image _image;
 
     [SerializeField]
-    private DealerAnswerPrepare _prepareObject;
+    private GameResultPrepare _prepareObject;
 
     void Start()
     {

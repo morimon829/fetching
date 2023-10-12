@@ -26,6 +26,9 @@ public class TurnEndScript : MonoBehaviour
     private string _processedSCENE;
     //Answer処理準備オブジェクト
     [SerializeField]
+    private DealerAnswerPrepare _dealerAnswerPrepare;
+    //Answer処理準備オブジェクト
+    [SerializeField]
     private ChildAnswerPrepare _childAnswerPrepare;
     //親スコアリストセット処理
     [SerializeField]
@@ -78,7 +81,7 @@ public class TurnEndScript : MonoBehaviour
         childAnswerPrepare.endPos = _answerClickAction.endPos;
         childAnswerPrepare.pushendPos = _answerClickAction.pushendPos;
         childAnswerPrepare.ScoreList = _dealerScorelistStartProcessing.passingScoreList;
-
+        childAnswerPrepare.CreatedSprite = _dealerAnswerPrepare.CreatedSprite;
         // イベントから削除
         SceneManager.sceneLoaded -= ChildAnswerGameSceneLoaded;
     }
@@ -96,6 +99,7 @@ public class TurnEndScript : MonoBehaviour
         gameResultPrepare.ChildEndPos = _answerClickAction.endPos;
         gameResultPrepare.ChildPushendPos = _answerClickAction.pushendPos;
         gameResultPrepare.ScoreList = _childScorelistStartProcessing.passingScoreList;
+        gameResultPrepare.CreatedSprite = _childAnswerPrepare.CreatedSprite;
 
         // イベントから削除
         SceneManager.sceneLoaded -= GameResultGameSceneLoaded;

@@ -21,6 +21,8 @@ public class GameResultPrepare : MonoBehaviour
     public Vector2 ChildPushendPos;
     //スコアリスト
     public int[] ScoreList;
-
+    //問題画像情報
+    [System.NonSerialized]
+    public Sprite CreatedSprite;
 
 }

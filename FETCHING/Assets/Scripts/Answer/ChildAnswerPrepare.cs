@@ -9,4 +9,7 @@ public class ChildAnswerPrepare : MonoBehaviour
     public Vector2 pushendPos;
     //スコアリスト
     public int[] ScoreList;
+
+    [System.NonSerialized]
+    public Sprite CreatedSprite;
 }
