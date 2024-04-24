@@ -20,6 +20,7 @@ namespace Kakera
 				var receiver = GameObject.Find("Unimgpicker");
 				if (receiver != null)
 				{
+					Debug.Log(Application.persistentDataPath + "/" + outputFileName);
 					receiver.SendMessage("OnComplete", Application.persistentDataPath + "/" + outputFileName);
 				}
 			}

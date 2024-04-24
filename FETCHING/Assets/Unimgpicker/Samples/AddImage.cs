@@ -26,24 +26,22 @@ public class AddImage : MonoBehaviour
 
     public void OnPressShowPicker()
     {
-        imagePicker.Show("Select Image", "unimgpicker", 512);//1024¨512‚É•ÏX
+        imagePicker.Show("Select Image", "unimgpicker", 512);//1024ï¿½ï¿½512ï¿½É•ÏX
     }
 
     private IEnumerator LoadImage(string path, Image output)
     {
+        Debug.Log("LoadImage");
         string url = "file://" + path;
         WWW www = new WWW(url);
         yield return www;
 
+
         texture = www.texture;
-        // ‚Ü‚¸ƒŠƒTƒCƒY
         int _CompressRate = TextureCompressionRate.TextureCompressionRatio(texture.width, texture.height);
         TextureScale.Bilinear(texture, texture.width / _CompressRate, texture.height / _CompressRate);
-        // ŽŸ‚Éˆ³k(c’·E‰¡’·‚·‚¬‚é‚ÆŽg‚¦‚È‚¢ê‡‚ª‚ ‚é‚æ‚¤‚Å‚·B) -> https://forum.unity.com/threads/strange-error-message-miplevel-m_mipcount.441907/
-        //texture.Compress(false);
-        // Sprite‚É•ÏŠ·‚µ‚ÄŽg—p‚·‚é
         texture2 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-        output.overrideSprite = texture2;
+        output.sprite = texture2;
     }
 }
 
@@ -51,7 +49,7 @@ public class AddImage : MonoBehaviour
 public static class TextureCompressionRate
 {
     /// <summary>
-    /// Texture‚ª500x500‚ÉŽû‚Ü‚é‚æ‚¤‚ÉƒŠƒTƒCƒY‚µ‚Ü‚·
+    /// Textureï¿½ï¿½500x500ï¿½ÉŽï¿½ï¿½Ü‚ï¿½æ‚¤ï¿½Éƒï¿½ï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½Ü‚ï¿½
     /// </summary>
     public static int TextureCompressionRatio(int width, int height)
     {
