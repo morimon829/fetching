@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using SFB;
+using Kakera;
 
 public class ImageLoad : MonoBehaviour
 {
@@ -15,24 +16,21 @@ public class ImageLoad : MonoBehaviour
     private static readonly string NextScene = "DealerAnswer";
     // シーン間引継ぎ情報
     private ImageLoadPrepare _imageLoadPrepare;
-
     private Sprite _sprite;
+    //Unimgpickerプレハブ
+    [SerializeField]
+    private Unimgpicker imagePicker;
+    //Texture2D情報
+    public Texture2D texture;
 
-    public void OnImageLoadButtonClicked()
+    private void Awake()
     {
-        // ファイル形式の指定
-        var extensions = new[]
-        {
-            new ExtensionFilter("Image Files", "png", "jpg", "jpeg"),
-        };
+        imagePicker.Completed += path => StartCoroutine(LoadImage(path, _image));
+    }
 
-        // 画像ファイルのパスを取得
-        var paths = StandaloneFileBrowser.OpenFilePanel("画像ファイルを選択してください", "", extensions, false);
-
-        if (paths.Length > 0)
-        {
-            StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
-        }
+    public void OnPressShowPicker()
+    {
+        imagePicker.Show("Select Image", "unimgpicker", 1024);//1024��512�ɕύX
     }
 
     public void OnCancelButtonClicked()
@@ -62,23 +60,22 @@ public class ImageLoad : MonoBehaviour
         SceneManager.sceneLoaded -= GameSceneLoaded;
     }
 
-    private IEnumerator OutputRoutine(string url)
+    private IEnumerator LoadImage(string path, Image output)
     {
-        var request = UnityWebRequestTexture.GetTexture(url);
-        yield return request.SendWebRequest();
+        Debug.Log("LoadImage");
+        string url = "file://" + path;
+        WWW www = new WWW(url);
+        yield return www;
 
-        if (UnityWebRequest.Result.Success != request.result)
-        {
-            Debug.Log(request.error);
-        }
-        else
-        {
-            Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            // 取得した画像のテクスチャをスプライトに変換
-            _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-            _image.sprite = _sprite;
-            _image.color = new Color(1, 1, 1, 1);
-            _image.preserveAspect = true;
-        }
+        texture = www.texture;
+        int _CompressRate = TextureCompressionRate.TextureCompressionRatio(texture.width, texture.height);
+        TextureScale.Bilinear(texture, texture.width / _CompressRate, texture.height / _CompressRate);
+        // _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+        _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+        output.sprite = _sprite;
+        output.color = new Color(1, 1, 1, 1);
+        output.preserveAspect = true;
     }
 }
+
