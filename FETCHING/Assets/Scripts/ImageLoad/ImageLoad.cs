@@ -52,7 +52,7 @@ public class ImageLoad : MonoBehaviour
     {
         DealerAnswerPrepare dealerAnswerPrepare = GameObject.FindWithTag("GameManager").GetComponent<DealerAnswerPrepare>();
 
-        dealerAnswerPrepare.CreatedSprite = _sprite;
+        dealerAnswerPrepare.CreatedSprite = _image.sprite;
         dealerAnswerPrepare.ScoreList = _imageLoadPrepare.ScoreList;
         dealerAnswerPrepare.Player1Name = _imageLoadPrepare.Player1Name;
         dealerAnswerPrepare.Player2Name = _imageLoadPrepare.Player2Name;
