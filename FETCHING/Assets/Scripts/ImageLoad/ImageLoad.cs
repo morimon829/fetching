@@ -62,20 +62,25 @@ public class ImageLoad : MonoBehaviour
 
     private IEnumerator LoadImage(string path, Image output)
     {
-        Debug.Log("LoadImage");
         string url = "file://" + path;
-        WWW www = new WWW(url);
-        yield return www;
+        using (UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url))
+        {
+            yield return webRequest.SendWebRequest();
 
-        texture = www.texture;
-        int _CompressRate = TextureCompressionRate.TextureCompressionRatio(texture.width, texture.height);
-        TextureScale.Bilinear(texture, texture.width / _CompressRate, texture.height / _CompressRate);
-        // _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-        _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                texture = DownloadHandlerTexture.GetContent(webRequest);
+                _sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-        output.sprite = _sprite;
-        output.color = new Color(1, 1, 1, 1);
-        output.preserveAspect = true;
+                output.sprite = _sprite;
+                output.color = new Color(1, 1, 1, 1);
+                output.preserveAspect = true;
+            }
+            else
+            {
+                Debug.LogError($"Failed to load texture from {url}. Error: {webRequest.error}");
+            }
+        }
     }
 }
 
