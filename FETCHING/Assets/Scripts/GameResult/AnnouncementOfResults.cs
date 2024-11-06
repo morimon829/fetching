@@ -26,6 +26,9 @@ public class AnnouncementOfResults : MonoBehaviour
     [System.NonSerialized]
     public GameObject player4CircleObject;
 
+    // キャンバスオブジェクト
+    [SerializeField]
+    private Transform _canvasTransform;
     // サークルプレハブオブジェクト
     public GameObject CirclePrefabObject;
     //リザルトボード
@@ -120,13 +123,17 @@ public class AnnouncementOfResults : MonoBehaviour
     // 引数のcenterPositionは親は「_gameResultPrepare.DealerStartPos」、子は「_gameResultPrepare.ChildPushendPos」を渡す
     private GameObject ChildCircleDraw(Vector2 centerPosition, Material playerCaler)
     {
-        GameObject ChildChoiceCircleObject = Instantiate(CirclePrefabObject, centerPosition, Quaternion.identity);
+        GameObject ChildChoiceCircleObject = Instantiate(CirclePrefabObject, centerPosition, Quaternion.identity, _canvasTransform);
+
+        // choiceCircleObjectをCanvasの子として設定
+        ChildChoiceCircleObject.transform.SetParent(_canvasTransform, true);
+        ChildChoiceCircleObject.transform.SetSiblingIndex(1);
+
         ChildChoiceCircleObject.transform.localScale = new Vector2(
             (_gameResultPrepare.DealerEndPos - _gameResultPrepare.DealerStartPos).magnitude,
             (_gameResultPrepare.DealerEndPos - _gameResultPrepare.DealerStartPos).magnitude
         );
-        ChildChoiceCircleObject.GetComponent<Renderer>().material = playerCaler;
-
+        ChildChoiceCircleObject.GetComponent<Image>().color = playerCaler.color;
         return ChildChoiceCircleObject;
     }
 
