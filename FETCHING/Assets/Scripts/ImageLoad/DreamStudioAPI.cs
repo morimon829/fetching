@@ -8,7 +8,7 @@ using TMPro;
 public class DreamStudioAPI : MonoBehaviour
 {
     //画像生成APIへの問い合わせ情報
-    private string apiUrl = "https://api.stability.ai/v1/generation/stable-diffusion-xl-beta-v2-2-2/text-to-image";
+    private string apiUrl = "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image";
     private string apiKey = "sk-hSboQXiCSTnPPLUS0qCuVRziWjY2Vl1JlldJyG3YJ3LqJsc5";    //キーワード入力欄の取得
 
     //画像生成キーワード

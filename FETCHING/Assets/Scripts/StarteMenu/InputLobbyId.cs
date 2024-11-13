@@ -43,8 +43,10 @@ public class InputLobbyId : MonoBehaviour
 
         //パネルのイメージ取得
         _fadealpha = _panelfade.GetComponent<Image>();
-        //パネルのalpha値を取得
+
+        //元に戻すパネルのalpha値を設定
         _transparency = _fadealpha.color.a;
+
     }
 
     void Update()

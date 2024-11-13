@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswerClickAction : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class AnswerClickAction : MonoBehaviour
     // 決定ボタンオブジェクト
     [SerializeField]
     private GameObject _decisionButtonObject;
+
+    // キャンバスオブジェクト
+    [SerializeField]
+    private Transform _canvasTransform;
 
     // キャンセルボタンオブジェクト
     [SerializeField]
@@ -138,13 +143,17 @@ public class AnswerClickAction : MonoBehaviour
             {
                 // startPosの位置を中心に円を配置する。
                 choiceCircleObject = Instantiate(circlePrefabObject, startPos, Quaternion.identity);
+
+                // choiceCircleObjectをCanvasの子として設定
+                choiceCircleObject.transform.SetParent(_canvasTransform, true);
+                choiceCircleObject.transform.SetSiblingIndex(1);
+
                 choiceCircleObject.transform.localScale = new Vector2(
                     (endPos - startPos).magnitude,
                     (endPos - startPos).magnitude
                 );
-
-                // startPosの位置をendPosに設定する
-                // startPos = endPos;
+                //円にプレイヤーカラーを設定
+                choiceCircleObject.GetComponent<Image>().color = _playerCaler.color;
 
                 // 決定ボタンとキャンセルボタンを表示
                 _decisionButtonObject.gameObject.SetActive(true);
@@ -195,14 +204,16 @@ public class AnswerClickAction : MonoBehaviour
             {
                 // pushendPosの位置を中心に円を配置する。
                 choiceCircleObject = Instantiate(circlePrefabObject, pushendPos, Quaternion.identity);
+                // choiceCircleObjectをCanvasの子として設定
+                choiceCircleObject.transform.SetParent(_canvasTransform, true);
+                choiceCircleObject.transform.SetSiblingIndex(1);
+
                 choiceCircleObject.transform.localScale = new Vector2(
                     (dealerEndPos - dealerStartPos).magnitude,
                     (dealerEndPos - dealerStartPos).magnitude
                 );
-                choiceCircleObject.GetComponent<Renderer>().material = _playerCaler;
-
-                // startPosの位置をendPosに設定する
-                // startPos = endPos;
+                //円にプレイヤーカラーを設定
+                choiceCircleObject.GetComponent<Image>().color = _playerCaler.color;
 
                 // 決定ボタンとキャンセルボタンを表示
                 _decisionButtonObject.gameObject.SetActive(true);
